@@ -1,0 +1,17 @@
+# Dependencias de Node (Angular y NestJS)
+**/node_modules/
+dist/
+.cache/
+
+# Entornos virtuales de Python (Simulador de Mauro)
+venv/
+.venv/
+*.pyc
+
+# Variables de entorno secretas (Angélica)
+.env
+
+# Configuraciones del sistema operativo o editores
+.DS_Store
+Thumbs.db
+.vscode/
