@@ -1,0 +1,64 @@
+### Pruebas rápidas de endpoints con REST Client
+### Instala la extensión "REST Client" en VS Code/Windsurf y ejecuta estas peticiones con un clic.
+
+@baseUrl = http://localhost:3001
+
+
+### 1) Crear un Usuario
+POST {{baseUrl}}/usuarios
+Content-Type: application/json
+
+{
+  "nombre": "Mauro Hardware",
+  "rol": "TECNICO",
+  "email": "mauro@vainilla-tech.com"
+}
+
+### 2) Crear un LoteVainilla
+POST {{baseUrl}}/lotes
+Content-Type: application/json
+
+{
+  "codigoLote": "LOT-2026-001",
+  "fechaCosecha": "2026-06-08",
+  "pesoGramos": 12500,
+  "estadoInspeccion": "PENDIENTE"
+}
+
+### 3) Crear un LogProceso asociado al lote
+# Reemplaza <ID_LOTE> con el UUID devuelto por la creación del lote.
+POST {{baseUrl}}/logs-proceso
+Content-Type: application/json
+
+{
+  "loteVainillaId": "<ID_LOTE>",
+  "etapa": "ESCALDADO",
+  "temperaturaRegistrada": 63.5,
+  "humedadRegistrada": 92.0,
+  "observaciones": "Evento simulado. Iniciando choque térmico para detener el metabolismo."
+}
+
+### 4) Crear un ReporteCalidad asociado al lote y al usuario
+# Reemplaza <ID_LOTE> y <ID_USUARIO> con los UUIDs generados.
+POST {{baseUrl}}/reportes-calidad
+Content-Type: application/json
+
+{
+  "loteVainillaId": "<ID_LOTE>",
+  "usuarioId": "<ID_USUARIO>",
+  "resultado": "OK",
+  "color": "Verde_Amarillento",
+  "tamañoPromedioCm": 15.5
+}
+
+### 5) Consultar todos los usuarios
+GET {{baseUrl}}/usuarios
+
+### 6) Consultar todos los lotes
+GET {{baseUrl}}/lotes
+
+### 7) Consultar todos los logs de proceso
+GET {{baseUrl}}/logs-proceso
+
+### 8) Consultar todos los reportes de calidad
+GET {{baseUrl}}/reportes-calidad
